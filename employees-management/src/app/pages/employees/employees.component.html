@@ -1,0 +1,14 @@
+<div class="app-page">
+  <div class="app-page__header">
+    <h1>Search Employees</h1>
+    <app-form-field label="Name" [required]="false" [control]="form.controls.input" [isInline]="isInline"
+      [patternError]="regexErrors.number">
+          <app-input formControlName="input"></app-input>
+      </app-form-field>
+      <app-button type="button">Search</app-button>
+  </div>
+
+</div>
+
+
+

@@ -1,0 +1,69 @@
+<div class="app-page">
+  <div class="app-page__header">
+    <h1>New Employee</h1>
+  </div>
+  <div class="app-page__content">
+    <form [formGroup]="form" novalidate autocomplete="off" (ngSubmit)="onSubmit()">
+
+
+    <app-form-field label="ID" [required]="true" [control]="form.controls.input" [isInline]="isInline"
+  [patternError]="regexErrors.number">
+      <app-input formControlName="input"></app-input>
+  </app-form-field>
+
+  <app-form-field label="Name" [required]="true" [control]="form.controls.input" [isInline]="isInline">
+      <app-input formControlName="input"></app-input>
+  </app-form-field>
+
+  <app-form-field label="Picture" [required]="true" [control]="form.controls.input" [isInline]="isInline">
+    <app-button appFilesUpload [crop]="true">Upload image</app-button>
+</app-form-field>
+
+<app-form-field label="Phone number" [required]="true" [control]="form.controls.input" [isInline]="isInline"
+  [patternError]="regexErrors.number">
+      <app-input formControlName="input"></app-input>
+  </app-form-field>
+
+  <app-form-field label="Email" [required]="true" [control]="form.controls.Email" [isInline]="isInline">
+    <app-input formControlName="input"></app-input>
+</app-form-field>
+
+<app-form-field label="Hire Date" [required]="true" [control]="form.controls.date" [isInline]="isInline">
+  <app-date formControlName="date" placeholder="Date" ></app-date>
+</app-form-field>
+
+<app-form-field label="Manager ID" [required]="true" [control]="form.controls.input" [isInline]="isInline"
+  [patternError]="regexErrors.number">
+      <app-input formControlName="input"></app-input>
+  </app-form-field>
+
+  <app-form-field>
+  <app-button type="submit">Submit</app-button>
+</app-form-field>
+
+</form>
+
+
+
+<h2>Actions</h2>
+<app-button (click)="onToggleSpinner()">Toggle Spinner</app-button>
+<app-button (click)="onError()">Error</app-button>
+<app-button (click)="onSuccess()">Success</app-button>
+<br/><br/><br/>
+
+
+<h2>Formularios de Angular</h2>
+
+<div class="wrapper">
+<app-spinner *ngIf="showSpinner"></app-spinner>
+
+
+  <app-button (click)="organizarElemento()">Organizar</app-button>
+  <app-button (click)="onPatchValue()">Agregar Texto</app-button>
+  <app-button (click)="onToggleDisabled()">Disabled</app-button>
+  <br/><br/>
+
+
+
+
+</div>
