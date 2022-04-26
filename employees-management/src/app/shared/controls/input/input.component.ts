@@ -1,5 +1,12 @@
-import { Component, OnInit, forwardRef, Input, Output, EventEmitter } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms'
+import {
+  Component,
+  OnInit,
+  forwardRef,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
@@ -8,50 +15,47 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms'
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef( () => InputComponent ),
-      multi: true
-    }
-  ]
+      useExisting: forwardRef(() => InputComponent),
+      multi: true,
+    },
+  ],
 })
 export class InputComponent implements OnInit, ControlValueAccessor {
-
-  @Input() placeholder: string = '';
+  @Input() placeholder!: string;
   @Output() changed = new EventEmitter<string>();
 
   value: string = '';
-  isDisable: boolean = false;
+  isDisabled: boolean = false;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  private propagateChange: any = () => {}
-  private propagateTouched: any = () => {}
-/*Control vaulue interface accessor*/
-  writeValue(value: string): void{
+  private propagateChange: any = () => {};
+  private propagateTouched: any = () => {};
+
+  writeValue(value: string): void {
     this.value = value;
   }
+
   registerOnChange(fn: any): void {
     this.propagateChange = fn;
   }
   registerOnTouched(fn: any): void {
     this.propagateTouched = fn;
   }
-  setDisabledState(isDisable: boolean): void{
-    this.isDisable = isDisable;
+  setDisabledState(isDisabled: boolean): void {
+    this.isDisabled = isDisabled;
   }
 
-  /*capture the value and set it, update*/
   onKeyup(event: Event): void {
     const { target } = event;
-    this.value = (target as HTMLInputElement). value
+    this.value = (target as HTMLInputElement).value;
     this.propagateChange(this.value);
     this.changed.emit(this.value);
   }
 
-  onBlur() : void {
+  onBlur(): void {
     this.propagateTouched();
   }
-
 }

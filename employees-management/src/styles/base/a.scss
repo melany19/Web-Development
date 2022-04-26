@@ -1,4 +1,4 @@
-.app-a {
+.app-a{
   color: $primary;
   transition: 0.25s;
   cursor: pointer;
@@ -9,6 +9,6 @@
   }
 
   &_active{
-    color: $primary-dark;
+    color:  $primary-dark;
   }
 }

@@ -6,7 +6,7 @@ export const regex = {
 };
 
 export const regexErrors = {
-	email: 'The email is incorrect',
-	password: 'The password must contain an uppercase letter, a lowercase letter, a number and a special character.',
-	number: 'You can only enter numbers'
+	email: 'El email es incorrecto',
+	password: 'El password debe contener una letra mayuscula, minuscula, un numero y un caracter especial',
+	number: 'Solo puede ingresar numeros'
 }

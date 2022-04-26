@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
-import { threadId } from 'worker_threads';
+import { Component, Input, OnInit } from '@angular/core';
+import {AbstractControl} from '@angular/forms';
 
 @Component({
   selector: 'app-form-field',
@@ -13,10 +12,11 @@ export class FormFieldComponent implements OnInit {
   @Input() required!: boolean;
   @Input() isInline!: boolean;
   @Input() control!: AbstractControl;
+  @Input() patternError!: string;
 
   constructor() {
     this.isInline = true;
-   }
+  }
 
   ngOnInit(): void {
   }

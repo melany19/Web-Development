@@ -1,7 +1,7 @@
-import { Value } from './../../../models/frontend/control-item/index';
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
+import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { BooleanLiteral } from 'typescript';
 
 type Value = number;
 
@@ -12,7 +12,7 @@ type Value = number;
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef( () => DateComponent),
+      useExisting: forwardRef( () => DateComponent ),
       multi: true
     }
   ]
@@ -23,14 +23,15 @@ export class DateComponent implements OnInit, ControlValueAccessor {
   @Input() max!: Date;
 
   @Output() changed = new EventEmitter<Value>();
-  @Output() closerd = new EventEmitter<void>();
+  @Output() closed = new EventEmitter<void>();
 
-  get inputValue(): Date {
-    return this.value ? new Date(this.value) : new Date();
+  get inputValue(): Date | null {
+    return this.value ?  new Date(this.value) : null;
   }
 
   value!: Value;
   isDisabled!: boolean;
+
 
   constructor() { }
 
@@ -41,7 +42,7 @@ export class DateComponent implements OnInit, ControlValueAccessor {
 
   private propagateTouched:any = () => {}
 
-  writeValue (value: Value): void {
+  writeValue(value: Value): void{
     this.value = value;
   }
 
@@ -49,26 +50,24 @@ export class DateComponent implements OnInit, ControlValueAccessor {
     this.propagateChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: any): void{
     this.propagateTouched = fn;
   }
 
-  setDisableState(isDisabled : boolean) : void {
+  setDisabledState(isDisabled : boolean) : void{
     this.isDisabled = isDisabled;
   }
 
   onChanged(event: MatDatepickerInputEvent<Date>): void {
-    const value = event.value ? event.value.getTime() : new Date().getTime();
-    this.value = value;
-    this.propagateChange(value);
-    this.changed.emit(value);
-
-
+      const value = event.value ? event.value.getTime() : new Date().getTime();
+      this.value = value;
+      this.propagateChange(value);
+      this.changed.emit(value);
   }
 
   onClosed(): void {
     this.propagateTouched();
-    this.closerd.emit()
+    this.closed.emit();
   }
 
 

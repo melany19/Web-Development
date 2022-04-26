@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { type } from 'os';
+import { Component, OnInit, Input } from '@angular/core';
 export type ButtonType = 'button' | 'submit';
 @Component({
   selector: 'app-button',

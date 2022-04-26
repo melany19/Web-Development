@@ -1,7 +1,7 @@
 @import "styles/colors";
 
-.date-range{
-  &__items{
+.date-range {
+  &__items {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -13,10 +13,8 @@
   }
 }
 
-:host-context(.form-field_error){
+:host-context(.form-field_error) {
   .input {
-    border: 1px solid $error;
+    border: 1px solid $error
   }
 }
-
-

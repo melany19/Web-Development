@@ -8,9 +8,11 @@
     (click)="picker.open()"
     [attr.disabled]="isDisabled ? true : null"
     [value]="inputValue"
-    [min]="min"
+    [min]=min
     [max]="max"
-    placeholder="{{ placeholder || 'Select a date' }}">
-  <mat-datepicker-toggle matSuffix [for]="picker" disabled="isDisabled"></mat-datepicker-toggle>
+    placeholder="{{ placeholder || 'Seleccione una fecha' }}"
+  >
+  <mat-datepicker-toggle matSuffix [for]="picker" disabled="isDisabled">
+  </mat-datepicker-toggle>
   <mat-datepicker #picker (closed)="onClosed()"></mat-datepicker>
 </div>
